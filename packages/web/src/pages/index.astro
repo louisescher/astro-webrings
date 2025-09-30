@@ -13,13 +13,9 @@ import OpenGraphImage from '@/assets/og.png';
 
 const webringEntryExample = `{
   "name": "Example Site",
-  "id": "a-unique-slug",
+  "slug": "a-unique-slug",
   "url": "https://example.com"
 }`;
-
-const htmlCode = `<a href="https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&ring=YOUR_RING">
-  <img src="BADGE_URL" alt="Astro webring badge" width="88" height="31" />
-</a>`;
 
 const installCode = `# npm
 npm install astro-webrings
@@ -36,7 +32,15 @@ ${"---"}
 <WebringBadge site="example.com" ring="friends-of-houston" />
 `;
 
-const componentCodeAnimated = `<WebringBadge site={"example.com"} ring="friends-of-houston" animated />`;
+const componentCodeAnimated = `<WebringBadge site="example.com" ring="friends-of-houston" animated />`;
+
+const componentCodeImageOverride = `${"---"}
+import WebringBadge from "astro-webrings/badge";
+import MyCustomBadge from "./my-custom-badge.png";
+${"---"}
+<WebringBadge site="example.com" ring="friends-of-houston" imageOverride={MyCustomBadge} />
+<WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"/path/inside/public/to/my-custom-badge.png"} />
+<WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"https://example.com/my-custom-badge.png"} />`;
 ---
 
 <html lang="en">
@@ -98,6 +102,9 @@ const componentCodeAnimated = `<WebringBadge site={"example.com"} ring="friends-
 			<p>Additionally, if there is an animated image for the ring you want to link to, you can use the `animated` prop:</p>
 			<Code code={componentCodeAnimated} lang="astro" />
 			<p>That's it! Welcome on the ring.</p>
+			<h3>Overriding the Image</h3>
+			<p>If you want to use a different image, you can use the <code>imageOverride</code> prop on the component to pass in either the URL of an image (local or remote) or an imported <code>ImageMetadata</code> object:</p>
+			<Code code={componentCodeImageOverride} lang="astro" />
 			<h2 id="available-webrings">Available Webrings</h2>
 			<p>Here's a list of all available Webrings you can join right now by making a PR:</p>
 			<table>
@@ -138,32 +145,6 @@ const componentCodeAnimated = `<WebringBadge site={"example.com"} ring="friends-
 					})}
 				</tbody>
 			</table>
-			{/*<p>Once your pull request is approved and merged, add the `astro-webring` integration to your Astro project:</p>
-			<Code code={installCode} lang={"bash"} />
-			<p>Then, add the `WebringBadge` component to your site:</p>
-			<Code code={componentCode} lang="astro" />
-			<p>
-				And that's it! When people now visit your site and click on the badge, they will be sent to the next site on the webring.
-				Glad to have you onboard!
-			</p>
-			<h2>Using a different webring</h2>
-			<p>
-				To add your site to one of the other Astro-related webrings, you need to make a PR for that webring on the
-				<a href="https://github.com/louisescher/astro-webrings"><code>astro-webrings</code> repository</a>. Once your PR
-				is merged, add the badge component to your site, making sure to change the `ring` prop to the site you added:
-			</p>
-			<Code code={componentCode2} lang="astro" />
-			<h2>Adding new webrings</h2>
-			<p>
-				If you want to create a new webring related to Astro, you can make a pull request on the
-				<a href="https://github.com/louisescher/astro-webrings"><code>astro-webrings</code> repository</a>.
-				Please include a name for the webring, a slug and a badge (preferrably 88x31px).
-			</p>
-			<p>
-				Once your PR has been approved
-				and merged, and a new version of the integration has been released, people can start joining the webring using
-				the method above!
-			</p>*/}
 		</div>
 	</body>
 </html>
