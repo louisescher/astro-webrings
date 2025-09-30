@@ -17,7 +17,7 @@ Inside of this file, place the following information:
 ```json
 {
   "name": "Example Site",
-  "id": "a-unique-slug",
+  "slug": "a-unique-slug",
   "url": "https://example.com"
 }
 ```
@@ -42,7 +42,7 @@ After installing, you can import and use the badge like this:
 ---
 import WebringBadge from "astro-webrings/badge";
 ---
-<WebringBadge site={"example.com"} ring="friends-of-houston" />
+<WebringBadge site="example.com" ring="friends-of-houston" />
 ```
 
 Remember to swap out the `site` and `ring` props to the `slug` you chose when submitting your PR, and the `ring` you want to link to.
@@ -50,10 +50,23 @@ Remember to swap out the `site` and `ring` props to the `slug` you chose when su
 Additionally, if there is an animated image for the ring you want to link to, you can use the `animated` prop:
 
 ```jsx
-<WebringBadge site={"example.com"} ring="friends-of-houston" animated />
+<WebringBadge site="example.com" ring="friends-of-houston" animated />
 ```
 
 That's it! Welcome on the ring.
+
+### Overriding the Image
+If you want to use a different image, you can use the `imageOverride` prop on the component to pass in either the URL of an image (local or remote) or an imported `ImageMetadata` object:
+
+```jsx
+---
+import WebringBadge from "astro-webrings/badge";
+import MyCustomBadge from "./my-custom-badge.png";
+---
+<WebringBadge site="example.com" ring="friends-of-houston" imageOverride={MyCustomBadge} />
+<WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"/path/inside/public/to/my-custom-badge.png"} />
+<WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"https://example.com/my-custom-badge.png"} />
+```
 
 ## Available Webrings
 A list of all webrings is available [on the webpage](https://astro-webrings.lou.gg/#available-webrings)!
