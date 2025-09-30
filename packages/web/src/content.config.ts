@@ -28,14 +28,11 @@ const webrings = defineCollection({
 	schema: z.object({
 		collection: z.string().min(1, { message: "Webring collection name needs to be at least one character long!" }),
 		slug: z.string().min(1, { message: "Webring slug needs to be at least one character long!" }),
-		animated: z.boolean(),
-		images: z.array(z.string().min(1, { message: "Webring image can't be empty!" })),
-		name: z.string().min(1, { message: "Webring name needs to be at least one character long!" }),
 	})
 });
 
 export const collections = {
+	webrings,
 	webring_builtWithAstro,
 	webring_friendsOfHouston,
-	webrings
 };

@@ -1,25 +1,24 @@
 ---
 import '@/styles/colors.css';
-import '@/styles/prose.css';
 import '@/styles/index.css';
+import '@/styles/prose.css';
 
 import { Code } from 'astro:components';
 import { Font } from 'astro:assets';
-import { getCollection } from 'astro:content';
 
-const rings = await getCollection("webrings");
+import { badges } from 'astro-webrings/badges';
+import { badgeImages } from '@/util/badge-images';
+import { Image } from 'astro:assets';
 
 const webringEntryExample = `{
   "name": "Example Site",
   "id": "a-unique-slug",
   "url": "https://example.com"
-}
-`;
+}`;
 
 const htmlCode = `<a href="https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&ring=YOUR_RING">
   <img src="BADGE_URL" alt="Astro webring badge" width="88" height="31" />
-</a>
-`;
+</a>`;
 
 // const installCode = `# Using npm
 // npm run astro add astro-webrings
@@ -69,7 +68,7 @@ const htmlCode = `<a href="https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&
 			<p>
 				Start by making a pull request on the
 				<a href="https://github.com/louisescher/astro-webrings"><code>astro-webrings</code> repository</a>
-				to add your site. You will need to create a file in the <code>src/content/rings/RING_YOU_WANT_TO_JOIN</code> directory,
+				to add your site. You will need to create a file in the <code>packages/web/src/content/rings/RING_YOU_WANT_TO_JOIN</code> directory,
 				preferrably using the origin of your site as the filename: <code>example.com.json</code>
 			</p>
 			<p>
@@ -112,19 +111,27 @@ const htmlCode = `<a href="https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&
 					</tr>
 				</thead>
 				<tbody>
-					{rings.map(({ data }) => (
-						<tr>
-							<td>{data.name}</td>
-							<td><code>{data.slug}</code></td>
-							<td class="not-prose">
-								<div class="badge-images">
-									{data.images.map((image) => (
-										<img src={`/rings/${image}`} width="88" height="31" alt={data.name} />
-									))}
-								</div>
-							</td>
-						</tr>
-					))}
+					{Object.keys(badges).map(async (key) => {
+						const badge = badges[key];
+
+						const staticImage = badgeImages[key].static;
+						const animatedImage = badgeImages[key].animated;
+
+						return (
+							<tr>
+								<td>{badge.name}</td>
+								<td><code>{key}</code></td>
+								<td class="not-prose">
+									<div class="badge-images">
+										<Image src={staticImage} alt={badge.name} width={88} height={31} />
+										{animatedImage && (
+											<Image src={animatedImage} alt={badge.name} width={88} height={31} />
+										)}
+									</div>
+								</td>
+							</tr>
+						)
+					})}
 				</tbody>
 			</table>
 			{/*<p>Once your pull request is approved and merged, add the `astro-webring` integration to your Astro project:</p>
