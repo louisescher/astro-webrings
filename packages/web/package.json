@@ -14,6 +14,7 @@
   "dependencies": {
     "@astrojs/node": "^9.4.4",
     "astro": "^5.14.1",
-    "astro-webrings": "workspace:*"
+    "astro-webrings": "workspace:*",
+    "sharp": "^0.34.4"
   }
 }

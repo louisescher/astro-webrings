@@ -7,7 +7,7 @@ A webring, [according to Wikipedia](https://en.wikipedia.org/wiki/Webring), is a
 
 ## Great! How do I join?
 
-Start by making a pull request on this repository to add your site. You will need to create a file in the `src/content/rings/RING_YOU_WANT_TO_JOIN` directory,
+Start by making a pull request on this repository to add your site. You will need to create a file in the `packages/web/src/content/rings/RING_YOU_WANT_TO_JOIN` directory,
 preferrably using the origin of your site as the filename: `example.com.json`
 
 Inside of this file, place the following information:
