@@ -17,7 +17,7 @@ const webringEntryExample = `{
 `;
 
 const htmlCode = `<a href="https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&ring=YOUR_RING">
-  <img src="/path/to/image.webp" alt="Astro webring badge" width="88" height="31" />
+  <img src="BADGE_URL" alt="Astro webring badge" width="88" height="31" />
 </a>
 `;
 
@@ -82,13 +82,13 @@ import { site } from "astro:config/server";
 				should be the URL to your site! This is where people will get linked to.
 			</p>
 			<p>
-				Once your pull request is approved and merged, you can download the badge from the table below and include it
-				on your site like this:
+				Once your pull request is approved and merged, you can add the code below to add a badge to your site:
 			</p>
 			<Code code={htmlCode} lang={"html"} />
 			<p>
-				Don't forget to swap out <code>YOUR_SITE_ID</code> and <code>YOUR_RING</code> with the id of your site
-				you specified in the PR and the slug of the webring you joined.
+				Don't forget to swap out <code>YOUR_SITE_ID</code>, <code>YOUR_RING</code> and <code>BADGE_URL</code>
+				with the id of your site you specified in the PR, the slug of the webring you joined and the badge image
+				link (which you can copy from the images in the table below).
 			</p>
 			<p>That's it! Welcome on the ring.</p>
 			<blockquote>
