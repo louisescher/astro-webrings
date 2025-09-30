@@ -7,9 +7,10 @@ interface Props extends HTMLAttributes<'a'> {
 	site: string;
 	ring: keyof typeof badges;
 	animated?: boolean;
+	imageOverride?: ImageMetadata | string;
 }
 
-const { site, ring, animated = false, ...props } = Astro.props;
+const { site, ring, animated = false, imageOverride, ...props } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>('../images/*.{png,jpg,jpeg,webp,gif}', { eager: true });
 const imageKeys = Object.keys(images);
@@ -23,7 +24,15 @@ const badgeImageKey = imageKeys.find((key) => key.endsWith(badgeImageName));
 
 if (!badgeImageKey) throw new Error(`Unable to find image: ${badgeImageName}. Please file a bug report: https://github.com/louisescher/astro-webrings/issues`);
 ---
-<a {...props} href={`https://astro-webrings.lou.gg/next?site=${site}&ring=${ring}`}><Image src={images[badgeImageKey].default} alt={badge.name} width={88} height={31} /></a>
+{/* Weird ormatting here is needed so no spaces are shown between multiple images. */}
+<a
+	{...props}
+	href={`https://astro-webrings.lou.gg/next?site=${site}&ring=${ring}`}
+>{
+	typeof imageOverride === "string"
+		? (<Image src={imageOverride} alt={badge.name} width={88} height={31} />)
+		: (<Image src={imageOverride || images[badgeImageKey].default} alt={badge.name} width={88} height={31} />)
+}</a>
 <style>
 	a {
 		width: fit-content;
