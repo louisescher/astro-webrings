@@ -1,9 +1,54 @@
 ---
+import '@/styles/colors.css';
+import '@/styles/prose.css';
+import '@/styles/index.css';
 
+import { Code } from 'astro:components';
+import { Font } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+const rings = await getCollection("webrings");
+
+const webringEntryExample = `{
+  "name": "Example Site",
+  "id": "a-unique-slug",
+  "url": "https://example.com"
+}
+`;
+
+const htmlCode = `<a href="https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&ring=YOUR_RING">
+  <img src="/path/to/image.webp" alt="Astro webring badge" width="88" height="31" />
+</a>
+`;
+
+const installCode = `# Using npm
+npm run astro add astro-webrings
+
+# Using pnpm
+pnpm astro add astro-webrings`;
+
+const componentCode = `---
+import WebringBadge from "astro-webrings/badge";
+import { site } from "astro:config/server";
+// ...
+---
+<!-- ... -->
+<WebringBadge site={site} ring="friends-of-houston" />
+`;
+
+const componentCode2 = `---
+import WebringBadge from "astro-webrings/badge";
+import { site } from "astro:config/server";
+// ...
+---
+<!-- ... -->
+<WebringBadge site={site} ring="built-with-astro" />
+`;
 ---
 
 <html lang="en">
 	<head>
+		<Font cssVariable='--font-inter' preload />
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
@@ -11,6 +56,103 @@
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<div class="prose card">
+			<h1>Astro Webrings</h1>
+			<p>Add your site to an Astro webring!</p>
+			<h2>What is this?</h2>
+			<p>
+				A webring, <a href="https://en.wikipedia.org/wiki/Webring">according to Wikipedia</a>,
+				is a collection of websites linked together in a circular structure, usually organized
+				around a specific theme, and often educational or social. This one is about <a href="https://astro.build">Astro</a>!
+			</p>
+			<h2>Great! How do I join?</h2>
+			<p>
+				Start by making a pull request on the
+				<a href="https://github.com/louisescher/astro-webrings"><code>astro-webrings</code> repository</a>
+				to add your site. You will need to create a file in the <code>src/content/rings/RING_YOU_WANT_TO_JOIN</code> directory,
+				preferrably using the origin of your site as the filename: <code>example.com.json</code>
+			</p>
+			<p>
+				Inside of this file, place the following information:
+			</p>
+			<Code code={webringEntryExample} lang="json" />
+			<p>
+				The <code>name</code> can be anything you want it to be. The <code>id</code> should be a unique identifier for your
+				site and should only contain lowercase letters from a-z, numbers, dots, hyphens and underscores. The <code>url</code>
+				should be the URL to your site! This is where people will get linked to.
+			</p>
+			<p>
+				Once your pull request is approved and merged, you can download the badge from the table below and include it
+				on your site like this:
+			</p>
+			<Code code={htmlCode} lang={"html"} />
+			<p>
+				Don't forget to swap out <code>YOUR_SITE_ID</code> and <code>YOUR_RING</code> with the id of your site
+				you specified in the PR and the slug of the webring you joined.
+			</p>
+			<p>That's it! Welcome on the ring.</p>
+			<blockquote>
+				In the near future, this webring will publish an Astro component to simplify this for you!
+				Check back on this site in a few days for an updated guide.
+			</blockquote>
+			<h2>Available Webrings</h2>
+			<p>Here's a list of all available Webrings you can join right now by making a PR:</p>
+			<table>
+				<thead>
+					<tr>
+						<th>
+							Ringname
+						</th>
+						<th>
+							Slug
+						</th>
+						<th>
+							Badge(s)
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{rings.map(({ data }) => (
+						<tr>
+							<td>{data.name}</td>
+							<td><code>{data.slug}</code></td>
+							<td class="not-prose">
+								<div class="badge-images">
+									{data.images.map((image) => (
+										<img src={`/rings/${image}`} width="88" height="31" alt={data.name} />
+									))}
+								</div>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+			{/*<p>Once your pull request is approved and merged, add the `astro-webring` integration to your Astro project:</p>
+			<Code code={installCode} lang={"bash"} />
+			<p>Then, add the `WebringBadge` component to your site:</p>
+			<Code code={componentCode} lang="astro" />
+			<p>
+				And that's it! When people now visit your site and click on the badge, they will be sent to the next site on the webring.
+				Glad to have you onboard!
+			</p>
+			<h2>Using a different webring</h2>
+			<p>
+				To add your site to one of the other Astro-related webrings, you need to make a PR for that webring on the
+				<a href="https://github.com/louisescher/astro-webrings"><code>astro-webrings</code> repository</a>. Once your PR
+				is merged, add the badge component to your site, making sure to change the `ring` prop to the site you added:
+			</p>
+			<Code code={componentCode2} lang="astro" />
+			<h2>Adding new webrings</h2>
+			<p>
+				If you want to create a new webring related to Astro, you can make a pull request on the
+				<a href="https://github.com/louisescher/astro-webrings"><code>astro-webrings</code> repository</a>.
+				Please include a name for the webring, a slug and a badge (preferrably 88x31px).
+			</p>
+			<p>
+				Once your PR has been approved
+				and merged, and a new version of the integration has been released, people can start joining the webring using
+				the method above!
+			</p>*/}
+		</div>
 	</body>
 </html>

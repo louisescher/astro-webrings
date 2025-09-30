@@ -1,0 +1,39 @@
+export const prerender = false;
+
+import type { webringSchema } from "@/content.config";
+import type { APIRoute } from "astro"
+import { getCollection } from "astro:content";
+import type { z } from "astro:schema";
+
+export const GET: APIRoute = async (ctx) => {
+	const currentSite = ctx.url.searchParams.get("site");
+	const webring = ctx.url.searchParams.get("ring");
+
+	const knownRings = await getCollection("webrings");
+
+	const activeRing = knownRings.find((ring) => ring.data.slug === webring);
+	if (!activeRing) {
+		return new Response("Unknown webring. Make sure the ring parameter is correct.", {
+			status: 400,
+		});
+	}
+
+	const ringCollection = await getCollection(activeRing.data.collection as any) as Array<{ data: z.infer<typeof webringSchema> }>;
+
+	const currentSiteIndex = ringCollection.findIndex((entry) => entry.data.id === currentSite);
+
+	if (currentSiteIndex < 0) {
+		return new Response("Unknown site. Please submit a PR to https://github.com/louisescher/astro-webrings to add it.", {
+			status: 400,
+		});
+	}
+
+	const nextSite = ringCollection[(currentSiteIndex + 1) % ringCollection.length];
+
+	return new Response(null, {
+		status: 302,
+		headers: new Headers({
+			"Location": nextSite.data.url
+		})
+	});
+}
