@@ -1,6 +1,6 @@
 {
 	"name": "astro-webrings",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Add webring badges for astro-webrings.lou.gg to your Astro site with ease!",
 	"packageManager": "pnpm@10.17.1",
 	"license": "MIT",
