@@ -1,9 +1,9 @@
-export const prerender = false;
-
-import type { webringSchema } from "@/content.config";
-import type { APIRoute } from "astro"
 import { getCollection } from "astro:content";
+import type { APIRoute } from "astro";
+import type { webringSchema } from "@/content.config";
 import type { z } from "astro:schema";
+
+export const prerender = false;
 
 export const GET: APIRoute = async (ctx) => {
 	const currentSite = ctx.url.searchParams.get("site");
@@ -18,6 +18,7 @@ export const GET: APIRoute = async (ctx) => {
 		});
 	}
 
+	// biome-ignore lint/suspicious/noExplicitAny: Needed to work, TypeScript is mad otherwise
 	const ringCollection = await getCollection(activeRing.data.collection as any) as Array<{ data: z.infer<typeof webringSchema> }>;
 
 	const currentSiteIndex = ringCollection.findIndex((entry) => entry.data.id === currentSite);

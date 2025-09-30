@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+import type { HTMLAttributes } from "astro/types";
+import { badges } from "../badges.js";
+
+interface Props extends HTMLAttributes<'a'> {
+	site: string;
+	ring: keyof typeof badges;
+	animated?: boolean;
+}
+
+const { site, ring, animated = false, ...props } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../images/*.{png,jpg,jpeg,webp,gif}', { eager: true });
+const imageKeys = Object.keys(images);
+
+const badge = badges[ring];
+
+if (!badge) throw new Error(`Unknown webring: ${ring}`);
+
+const badgeImageName = animated && 'animated' in badge ? badge.animated : badge.static;
+const badgeImageKey = imageKeys.find((key) => key.endsWith(badgeImageName));
+
+if (!badgeImageKey) throw new Error(`Unable to find image: ${badgeImageName}. Please file a bug report: https://github.com/louisescher/astro-webrings/issues`);
+---
+<a {...props} href={`https://astro-webrings.lou.gg/next?site=${site}&ring=${ring}`}><Image src={images[badgeImageKey].default} alt={badge.name} width={88} height={31} /></a>
+<style>
+	a {
+		width: fit-content;
+		height: fit-content;
+		display: inline-block;
+	}
+</style>

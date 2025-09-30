@@ -1,0 +1,52 @@
+{
+	"name": "astro-webrings",
+	"version": "0.0.0",
+	"description": "Add webring badges for astro-webrings.lou.gg to your Astro site with ease!",
+	"packageManager": "pnpm@10.17.1",
+	"license": "MIT",
+	"author": {
+		"name": "Louis Escher",
+		"url": "https://lou.gg"
+	},
+	"keywords": [
+		"astro",
+		"astro-integration",
+		"withastro",
+		"webring",
+		"webrings"
+	],
+	"type": "module",
+	"scripts": {
+		"build": "buildkit build 'src/**/*.{ts,astro,css,js,png,jpg,jpeg,webp,gif}'",
+		"dev": "buildkit dev 'src/**/*.{ts,astro,css,js,png,jpg,jpeg,webp,gif}'"
+	},
+	"files": [
+		"dist"
+	],
+	"devDependencies": {
+		"@withstudiocms/buildkit": "0.1.0-beta.5",
+		"typescript": "^5.9.2",
+		"@types/node": "^22.18.0",
+		"@changesets/changelog-github": "0.5.1",
+		"@changesets/cli": "2.29.7",
+		"@changesets/config": "3.1.1",
+		"@changesets/write": "0.4.0"
+	},
+	"peerDependencies": {
+		"astro": "^5"
+	},
+	"exports": {
+		"./badges": {
+			"types": "./dist/badges.d.ts",
+			"default": "./dist/badges.js"
+		},
+		"./badge": {
+			"types": "./dist/components/Badge.astro",
+			"default": "./dist/components/Badge.astro"
+		},
+		"./images/*": {
+			"types": "./dist/images/*",
+			"default": "./dist/images/*"
+		}
+	}
+}
