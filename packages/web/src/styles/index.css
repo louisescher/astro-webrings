@@ -24,4 +24,11 @@ body {
 	display: flex;
 	align-items: center;
 	gap: .25rem;
+	flex-wrap: wrap;
+}
+
+.top-image {
+	border: 1px solid var(--border);
+	width: 100%;
+	aspect-ratio: 1.9 / 1;
 }

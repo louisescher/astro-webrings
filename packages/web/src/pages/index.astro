@@ -9,6 +9,7 @@ import { Font } from 'astro:assets';
 import { badges } from 'astro-webrings/badges';
 import { badgeImages } from '@/util/badge-images';
 import { Image } from 'astro:assets';
+import OpenGraphImage from '@/assets/og.png';
 
 const webringEntryExample = `{
   "name": "Example Site",
@@ -20,29 +21,22 @@ const htmlCode = `<a href="https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&
   <img src="BADGE_URL" alt="Astro webring badge" width="88" height="31" />
 </a>`;
 
-// const installCode = `# Using npm
-// npm run astro add astro-webrings
+const installCode = `# npm
+npm install astro-webrings
 
-// # Using pnpm
-// pnpm astro add astro-webrings`;
+# pnpm
+pnpm add astro-webrings
 
-// const componentCode = `---
-// import WebringBadge from "astro-webrings/badge";
-// import { site } from "astro:config/server";
-// // ...
-// ---
-// <!-- ... -->
-// <WebringBadge site={site} ring="friends-of-houston" />
-// `;
+# yarn
+yarn add astro-webrings`;
 
-// const componentCode2 = `---
-// import WebringBadge from "astro-webrings/badge";
-// import { site } from "astro:config/server";
-// // ...
-// ---
-// <!-- ... -->
-// <WebringBadge site={site} ring="built-with-astro" />
-// `;
+const componentCode = `${"---"}
+import WebringBadge from "astro-webrings/badge";
+${"---"}
+<WebringBadge site="example.com" ring="friends-of-houston" />
+`;
+
+const componentCodeAnimated = `<WebringBadge site={"example.com"} ring="friends-of-houston" animated />`;
 ---
 
 <html lang="en">
@@ -52,10 +46,22 @@ const htmlCode = `<a href="https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Webrings for Astro, the JS Framework!" />
+		<meta name="theme-color" content="#eb2d84" />
+		<meta property="og:title" content="🛟 Astro Webrings" />
+		<meta property="og:description" content="Webrings for Astro, the JS Framework!" />
+		<meta property="og:image" content="/og.png" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="en" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="🛟 Astro Webrings">
+		<meta property="twitter:description" content="Webrings for Astro, the JS Framework!" />
+		<meta name="twitter:image" content="/og.png">
 		<title>Astro Webrings</title>
 	</head>
 	<body>
 		<div class="prose card">
+			<Image src={OpenGraphImage} loading="eager" class="top-image" quality={100} width={660} height={347} alt='A buoy besides the text "Astro Webrings" in big, white letters, with some pink decoration in the corners.' />
 			<h1>🛟 Astro Webrings</h1>
 			<p>Add your site to an Astro webring!</p>
 			<h2>What is this?</h2>
@@ -81,19 +87,17 @@ const htmlCode = `<a href="https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&
 				should be the URL to your site! This is where people will get linked to.
 			</p>
 			<p>
-				Once your pull request is approved and merged, you can use the code below to add a badge to your site:
+				Once your pull request is approved and merged, you can install the
+				<a href="https://www.npmjs.com/package/astro-webrings"><code>astro-webrings</code></a> package, which allows you to add a
+				badge for the ring to your site. Start by installing the package from the NPM:
 			</p>
-			<Code code={htmlCode} lang={"html"} />
-			<p>
-				Don't forget to swap out <code>YOUR_SITE_ID</code>, <code>YOUR_RING</code> and <code>BADGE_URL</code>
-				with the id of your site you specified in the PR, the slug of the webring you joined and the badge image
-				link (which you can copy from the images in the table below).
-			</p>
+			<Code code={installCode} lang="bash" />
+			<p>After installing, you can import and use the badge like this:</p>
+			<Code code={componentCode} lang="astro" />
+			<p>Remember to swap out the `site` and `ring` props to the `slug` you chose when submitting your PR, and the `ring` you want to link to.</p>
+			<p>Additionally, if there is an animated image for the ring you want to link to, you can use the `animated` prop:</p>
+			<Code code={componentCodeAnimated} lang="astro" />
 			<p>That's it! Welcome on the ring.</p>
-			<blockquote>
-				In the near future, this webring will publish an Astro component to simplify this for you!
-				Check back on this site in a few days for an updated guide.
-			</blockquote>
 			<h2 id="available-webrings">Available Webrings</h2>
 			<p>Here's a list of all available Webrings you can join right now by making a PR:</p>
 			<table>

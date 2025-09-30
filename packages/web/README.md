@@ -1,3 +1,5 @@
+![A buoy besides the text "Astro Webrings" in big, white letters, with some pink decoration in the corners.](./public/og.png)
+
 # Astro Webrings
 Add your site to an Astro webring!
 
@@ -21,19 +23,37 @@ Inside of this file, place the following information:
 ```
 The `name` can be anything you want it to be. The `id` should be a unique identifier for your site and should only contain lowercase letters from a-z, numbers, dots, hyphens and underscores. The `url` should be the URL to your site! This is where people will get linked to.
 
-Once your pull request is approved and merged, you can use the code below to add a badge to your site:
+Once your pull request is approved and merged, you can install the [`astro-webrings`](https://www.npmjs.com/package/astro-webrings) package, which allows you to add a badge for the ring to your site. Start by installing the package from the NPM:
 
-```html
-<a href="https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&ring=YOUR_RING">
-  <img src="BADGE_URL" alt="Astro webring badge" width="88" height="31" />
-</a>
+```bash
+# npm
+npm install astro-webrings
+
+# pnpm
+pnpm add astro-webrings
+
+# yarn
+yarn add astro-webrings
 ```
 
-Don't forget to swap out `YOUR_SITE_ID`, `YOUR_RING` and `BADGE_URL` with the id of your site you specified in the PR, the slug of the webring you joined and the badge image link (which you can copy from the images in the table below).
+After installing, you can import and use the badge like this:
+
+```jsx
+---
+import WebringBadge from "astro-webrings/badge";
+---
+<WebringBadge site={"example.com"} ring="friends-of-houston" />
+```
+
+Remember to swap out the `site` and `ring` props to the `slug` you chose when submitting your PR, and the `ring` you want to link to.
+
+Additionally, if there is an animated image for the ring you want to link to, you can use the `animated` prop:
+
+```jsx
+<WebringBadge site={"example.com"} ring="friends-of-houston" animated />
+```
 
 That's it! Welcome on the ring.
-
-> In the near future, this webring will publish an Astro component to simplify this for you! Check back on this site in a few days for an updated guide.
 
 ## Available Webrings
 A list of all webrings is available [on the webpage](https://astro-webrings.lou.gg/#available-webrings)!
