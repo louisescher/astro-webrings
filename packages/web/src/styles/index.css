@@ -36,5 +36,5 @@ body {
 }
 
 .prose code {
- text-wrap: wrap;
+	word-break: break-word;
 }
