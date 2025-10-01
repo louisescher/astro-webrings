@@ -34,3 +34,7 @@ body {
 	border-radius: .25rem;
 	height: auto;
 }
+
+.prose code {
+	word-break: break-word;
+}
