@@ -17,7 +17,7 @@ Inside of this file, place the following information:
 ```json
 {
   "name": "Example Site",
-  "id": "a-unique-slug",
+  "id": "a-unique-id",
   "url": "https://example.com"
 }
 ```
