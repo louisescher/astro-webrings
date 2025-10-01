@@ -32,4 +32,5 @@ body {
 	width: 100%;
 	aspect-ratio: 1.9 / 1;
 	border-radius: .25rem;
+	height: auto;
 }

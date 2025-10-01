@@ -84,7 +84,7 @@ ${"---"}
 			<p>
 				Inside of this file, place the following information:
 			</p>
-			<Code code={webringEntryExample} lang="json" />
+			<Code code={webringEntryExample} lang="json" wrap />
 			<p>
 				The <code>name</code> can be anything you want it to be. The <code>slug</code> should be a unique identifier for your
 				site and should only contain lowercase letters from a-z, numbers, dots, hyphens and underscores. The <code>url</code>
@@ -95,16 +95,16 @@ ${"---"}
 				<a href="https://www.npmjs.com/package/astro-webrings"><code>astro-webrings</code></a> package, which allows you to add a
 				badge for the ring to your site. Start by installing the package from the NPM:
 			</p>
-			<Code code={installCode} lang="bash" />
+			<Code code={installCode} lang="bash" wrap />
 			<p>After installing, you can import and use the badge like this:</p>
-			<Code code={componentCode} lang="astro" />
+			<Code code={componentCode} lang="astro" wrap />
 			<p>Remember to swap out the <code>site</code> and <code>id</code> props to the <code>slug</code> you chose when submitting your PR, and the `ring` you want to link to.</p>
 			<p>Additionally, if there is an animated image for the ring you want to link to, you can use the `animated` prop:</p>
-			<Code code={componentCodeAnimated} lang="astro" />
+			<Code code={componentCodeAnimated} lang="astro" wrap />
 			<p>That's it! Welcome on the ring.</p>
 			<h3>Overriding the Image</h3>
 			<p>If you want to use a different image, you can use the <code>imageOverride</code> prop on the component to pass in either the URL of an image (local or remote) or an imported <code>ImageMetadata</code> object:</p>
-			<Code code={componentCodeImageOverride} lang="astro" />
+			<Code code={componentCodeImageOverride} lang="astro" wrap />
 			<h2 id="available-webrings">Available Webrings</h2>
 			<p>Here's a list of all available Webrings you can join right now by making a PR:</p>
 			<table>
