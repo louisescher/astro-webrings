@@ -1,6 +1,6 @@
 ![A buoy besides the text "Astro Webrings" in big, white letters, with some pink decoration in the corners.](https://raw.githubusercontent.com/louisescher/astro-webrings/refs/heads/master/packages/web/public/og.png)
 
-# Astro Webrings
+# 🛟 Astro Webrings
 Add your site to an Astro webring!
 
 ## What is this?
