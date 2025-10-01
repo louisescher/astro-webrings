@@ -20,9 +20,13 @@ const badge = badges[ring];
 if (!badge) throw new Error(`Unknown webring: ${ring}`);
 
 const badgeImageName = animated && 'animated' in badge ? badge.animated : badge.static;
-const badgeImageKey = imageKeys.find((key) => key.endsWith(badgeImageName));
 
-if (!badgeImageKey) throw new Error(`Unable to find image: ${badgeImageName}. Please file a bug report: https://github.com/louisescher/astro-webrings/issues`);
+const unknownImageError = `Unable to find image: ${badgeImageName}. Please file a bug report: https://github.com/louisescher/astro-webrings/issues`;
+
+if (!badgeImageName) throw new Error(unknownImageError);
+
+const badgeImageKey = imageKeys.find((key) => key.endsWith(badgeImageName));
+if (!badgeImageKey) throw new Error(unknownImageError);
 ---
 {/* Weird ormatting here is needed so no spaces are shown between multiple images. */}
 <a
