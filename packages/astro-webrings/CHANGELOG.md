@@ -1,5 +1,11 @@
 # astro-webrings
 
+## 0.1.2
+
+### Patch Changes
+
+- [#13](https://github.com/louisescher/astro-webrings/pull/13) [`aef0fc5`](https://github.com/louisescher/astro-webrings/commit/aef0fc55671e7e5dbc5404f1c03bd1f7b9fb8cc8) Thanks [@louisescher](https://github.com/louisescher)! - Fixes a typo in the "Built with Astro" badge name
+
 ## 0.1.1
 
 ### Patch Changes
