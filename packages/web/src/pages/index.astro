@@ -6,7 +6,7 @@ import '@/styles/prose.css';
 import { Code } from 'astro:components';
 import { Font } from 'astro:assets';
 
-import { badges } from 'astro-webrings/badges';
+import { badges, type Badge } from 'astro-webrings/badges';
 import { badgeImages } from '@/util/badge-images';
 import { Image } from 'astro:assets';
 import OpenGraphImage from '@/assets/og.png';
@@ -123,10 +123,10 @@ ${"---"}
 				</thead>
 				<tbody>
 					{Object.keys(badges).map(async (key) => {
-						const badge = badges[key];
+						const badge = badges[key as Badge];
 
-						const staticImage = badgeImages[key].static;
-						const animatedImage = badgeImages[key].animated;
+						const staticImage = badgeImages[key as Badge].static;
+						const animatedImage = badgeImages[key as Badge].animated;
 
 						return (
 							<tr>
