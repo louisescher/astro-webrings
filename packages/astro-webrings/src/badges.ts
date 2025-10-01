@@ -1,4 +1,4 @@
-export type Badge = (
+export type BadgeName = (
 	'friends-of-houston'
 	| 'built-with-astro'
 )
@@ -9,7 +9,7 @@ export type BadgeData = {
 	animated?: string;
 }
 
-export const badges: Record<Badge, BadgeData> = {
+export const badges: Record<BadgeName, BadgeData> = {
 	'friends-of-houston': {
 		name: 'Friends of Houston',
 		static: 'friends-of-houston.webp',
