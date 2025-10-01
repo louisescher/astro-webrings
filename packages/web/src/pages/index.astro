@@ -123,10 +123,10 @@ ${"---"}
 				</thead>
 				<tbody>
 					{Object.keys(badges).map(async (key) => {
-						const badge = badges[key as Badge];
+						const badge = badges[key as BadgeName];
 
-						const staticImage = badgeImages[key as Badge].static;
-						const animatedImage = badgeImages[key as Badge].animated;
+						const staticImage = badgeImages[key as BadgeName].static;
+						const animatedImage = badgeImages[key as BadgeName].animated;
 
 						return (
 							<tr>
