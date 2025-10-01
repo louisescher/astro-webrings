@@ -21,7 +21,7 @@ Inside of this file, place the following information:
   "url": "https://example.com"
 }
 ```
-The `name` can be anything you want it to be. The `id` should be a unique identifier for your site and should only contain lowercase letters from a-z, numbers, dots, hyphens and underscores. The `url` should be the URL to your site! This is where people will get linked to.
+The `name` can be anything you want it to be. The `slug` should be a unique identifier for your site and should only contain lowercase letters from a-z, numbers, dots, hyphens and underscores. The `url` should be the URL to your site! This is where people will get linked to.
 
 Once your pull request is approved and merged, you can install the [`astro-webrings`](https://www.npmjs.com/package/astro-webrings) package, which allows you to add a badge for the ring to your site. Start by installing the package from the NPM:
 
