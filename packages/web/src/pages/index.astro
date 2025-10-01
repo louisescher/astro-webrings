@@ -13,7 +13,7 @@ import OpenGraphImage from '@/assets/og.png';
 
 const webringEntryExample = `{
   "name": "Example Site",
-  "slug": "a-unique-slug",
+  "id": "a-unique-slug",
   "url": "https://example.com"
 }`;
 
@@ -98,7 +98,7 @@ ${"---"}
 			<Code code={installCode} lang="bash" />
 			<p>After installing, you can import and use the badge like this:</p>
 			<Code code={componentCode} lang="astro" />
-			<p>Remember to swap out the <code>site</code> and <code>ring</code> props to the <code>slug</code> you chose when submitting your PR, and the `ring` you want to link to.</p>
+			<p>Remember to swap out the <code>site</code> and <code>id</code> props to the <code>slug</code> you chose when submitting your PR, and the `ring` you want to link to.</p>
 			<p>Additionally, if there is an animated image for the ring you want to link to, you can use the `animated` prop:</p>
 			<Code code={componentCodeAnimated} lang="astro" />
 			<p>That's it! Welcome on the ring.</p>
