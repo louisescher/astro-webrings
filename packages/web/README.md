@@ -23,7 +23,7 @@ Inside of this file, place the following information:
 ```
 The `name` can be anything you want it to be. The `id` should be a unique identifier for your site and should only contain lowercase letters from a-z, numbers, dots, hyphens and underscores. The `url` should be the URL to your site! This is where people will get linked to.
 
-Once your pull request is approved and merged, you can install the [`astro-webrings`](https://www.npmjs.com/package/astro-webrings) package, which allows you to add a badge for the ring to your site. Start by installing the package from the NPM:
+Once your pull request is approved, you should install the [`astro-webrings`](https://www.npmjs.com/package/astro-webrings) package, which allows you to add a badge for the ring to your site. Start by installing the package from the NPM:
 
 ```bash
 # npm
@@ -53,7 +53,16 @@ Additionally, if there is an animated image for the ring you want to link to, yo
 <WebringBadge site="example.com" ring="friends-of-houston" animated />
 ```
 
-That's it! Welcome on the ring.
+Once the badge or an equivalent link has been added, your PR will be merged. Welcome on the ring!
+
+### Custom Badges
+In case you want to make a custom badge, or manually link to the next site on the ring, you can use the following links:
+
+| Description   | Link                                                                  |
+| ------------- | --------------------------------------------------------------------- |
+| Next Site     | `https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&ring=RING_NAME` |
+| Previous Site | `https://astro-webrings.lou.gg/prev?site=YOUR_SITE_ID&ring=RING_NAME` |
+| Random Site   | `https://astro-webrings.lou.gg/rand?site=YOUR_SITE_ID&ring=RING_NAME` |
 
 ### Overriding the Image
 If you want to use a different image, you can use the `imageOverride` prop on the component to pass in either the URL of an image (local or remote) or an imported `ImageMetadata` object:

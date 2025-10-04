@@ -1,0 +1,48 @@
+import { getCollection } from "astro:content";
+import type { APIRoute } from "astro";
+import type { webringSchema } from "@/content.config";
+import type { z } from "astro:schema";
+
+export const prerender = false;
+
+const genRandomIdx = (max: number) => Math.floor(Math.random() * max);
+
+export const GET: APIRoute = async (ctx) => {
+	const currentSite = ctx.url.searchParams.get("site");
+	const webring = ctx.url.searchParams.get("ring");
+
+	const knownRings = await getCollection("webrings");
+
+	const activeRing = knownRings.find((ring) => ring.data.slug === webring);
+	if (!activeRing) {
+		return new Response("Unknown webring. Make sure the ring parameter is correct.", {
+			status: 400,
+		});
+	}
+
+	// biome-ignore lint/suspicious/noExplicitAny: Needed to work, TypeScript is mad otherwise
+	const ringCollection = await getCollection(activeRing.data.collection as any) as Array<{ data: z.infer<typeof webringSchema> }>;
+
+	const currentSiteIndex = ringCollection.findIndex((entry) => entry.data.id === currentSite);
+
+	if (currentSiteIndex < 0) {
+		return new Response("Unknown site. Please submit a PR to https://github.com/louisescher/astro-webrings to add it.", {
+			status: 400,
+		});
+	}
+
+	let randomSiteIndex = genRandomIdx(ringCollection.length);
+
+	while (randomSiteIndex === currentSiteIndex) {
+		randomSiteIndex = genRandomIdx(ringCollection.length);
+	}
+
+	const randomSite = ringCollection[randomSiteIndex];
+
+	return new Response(null, {
+		status: 302,
+		headers: new Headers({
+			"Location": randomSite.data.url
+		})
+	});
+}
