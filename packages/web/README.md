@@ -45,7 +45,7 @@ import WebringBadge from "astro-webrings/badge";
 <WebringBadge site="example.com" ring="friends-of-houston" />
 ```
 
-Remember to swap out the `site` and `ring` props to the `slug` you chose when submitting your PR, and the `ring` you want to link to.
+Remember to swap out the `site` and `ring` props to the `id` you chose when submitting your PR, and the `ring` you want to link to.
 
 Additionally, if there is an animated image for the ring you want to link to, you can use the `animated` prop:
 
@@ -56,13 +56,12 @@ Additionally, if there is an animated image for the ring you want to link to, yo
 Once the badge or an equivalent link has been added, your PR will be merged. Welcome on the ring!
 
 ### Custom Badges
-In case you want to make a custom badge, or manually link to the next site on the ring, you can use the following links:
+In case you want to make a custom badge, or manually link to the next site on the ring, you can use the following links. If you're making a custom badge, consider linking to the previous site as well!
 
 | Description   | Link                                                                  |
 | ------------- | --------------------------------------------------------------------- |
 | Next Site     | `https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&ring=RING_NAME` |
 | Previous Site | `https://astro-webrings.lou.gg/prev?site=YOUR_SITE_ID&ring=RING_NAME` |
-| Random Site   | `https://astro-webrings.lou.gg/rand?site=YOUR_SITE_ID&ring=RING_NAME` |
 
 ### Overriding the Image
 If you want to use a different image, you can use the `imageOverride` prop on the component to pass in either the URL of an image (local or remote) or an imported `ImageMetadata` object:
