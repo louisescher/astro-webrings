@@ -1,5 +1,11 @@
 # astro-webrings
 
+## 0.1.3
+
+### Patch Changes
+
+- [#22](https://github.com/louisescher/astro-webrings/pull/22) [`e562285`](https://github.com/louisescher/astro-webrings/commit/e56228529cb99b414ee56cfa2eff2dd2edc95e6b) Thanks [@louisescher](https://github.com/louisescher)! - Fixes a small styling issue where the badge link would be marginally smaller than the badge image.
+
 ## 0.1.2
 
 ### Patch Changes
