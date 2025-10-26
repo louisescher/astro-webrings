@@ -8,6 +8,10 @@
 		"name": "Louis Escher",
 		"url": "https://lou.gg"
 	},
+	"repository": {
+		"url": "https://github.com/louisescher/astro-webrings",
+		"directory": "packages/astro-webrings"
+	},
 	"keywords": [
 		"astro",
 		"astro-integration",
