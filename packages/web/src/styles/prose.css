@@ -385,7 +385,8 @@
 	border-collapse: collapse;
 }
 
-.prose table th, .prose table td {
+.prose table th,
+.prose table td {
 	border: 1px solid var(--sui-prose-hr);
-	padding-left: .25rem;
+	padding-left: 0.25rem;
 }

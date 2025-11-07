@@ -1,7 +1,7 @@
 ---
-import { Image } from "astro:assets";
-import type { HTMLAttributes } from "astro/types";
-import { badges } from "../badges.js";
+import { Image } from 'astro:assets';
+import type { HTMLAttributes } from 'astro/types';
+import { badges } from '../badges.js';
 
 interface Props extends HTMLAttributes<'a'> {
 	site: string;
@@ -12,7 +12,9 @@ interface Props extends HTMLAttributes<'a'> {
 
 const { site, ring, animated = false, imageOverride, ...props } = Astro.props;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('../images/*.{png,jpg,jpeg,webp,gif}', { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>('../images/*.{png,jpg,jpeg,webp,gif}', {
+	eager: true,
+});
 const imageKeys = Object.keys(images);
 
 const badge = badges[ring];
@@ -28,7 +30,7 @@ if (!badgeImageName) throw new Error(unknownImageError);
 const badgeImageKey = imageKeys.find((key) => key.endsWith(badgeImageName));
 if (!badgeImageKey) throw new Error(unknownImageError);
 ---
-{/* Weird ormatting here is needed so no spaces are shown between multiple images. */}
+{/* Weird formatting here is needed so no spaces are shown between multiple images. */}
 <a
 	{...props}
 	href={`https://astro-webrings.lou.gg/next?site=${site}&ring=${ring}`}

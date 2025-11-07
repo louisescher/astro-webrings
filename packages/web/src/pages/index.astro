@@ -26,18 +26,18 @@ pnpm add astro-webrings
 # yarn
 yarn add astro-webrings`;
 
-const componentCode = `${"---"}
+const componentCode = `${'---'}
 import WebringBadge from "astro-webrings/badge";
-${"---"}
+${'---'}
 <WebringBadge site="example.com" ring="friends-of-houston" />
 `;
 
 const componentCodeAnimated = `<WebringBadge site="example.com" ring="friends-of-houston" animated />`;
 
-const componentCodeImageOverride = `${"---"}
+const componentCodeImageOverride = `${'---'}
 import WebringBadge from "astro-webrings/badge";
 import MyCustomBadge from "./my-custom-badge.png";
-${"---"}
+${'---'}
 <WebringBadge site="example.com" ring="friends-of-houston" imageOverride={MyCustomBadge} />
 <WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"/path/inside/public/to/my-custom-badge.png"} />
 <WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"https://example.com/my-custom-badge.png"} />`;
