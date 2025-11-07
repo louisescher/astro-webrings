@@ -6,7 +6,13 @@ import type { z } from "astro:schema";
 export const prerender = false;
 
 export const GET: APIRoute = async (ctx) => {
-	const currentSite = ctx.url.searchParams.get("site");
+	let currentSite = ctx.url.searchParams.get("site");
+
+	if (!currentSite) return new Response("No `site` parameter has been provided.", {
+		status: 400
+	});
+
+	currentSite = currentSite.replace(/https?:\/\//g, "");
 	const webring = ctx.url.searchParams.get("ring");
 
 	const knownRings = await getCollection("webrings");
