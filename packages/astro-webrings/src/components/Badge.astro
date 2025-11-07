@@ -30,7 +30,7 @@ if (!badgeImageName) throw new Error(unknownImageError);
 const badgeImageKey = imageKeys.find((key) => key.endsWith(badgeImageName));
 if (!badgeImageKey) throw new Error(unknownImageError);
 ---
-{/* Weird ormatting here is needed so no spaces are shown between multiple images. */}
+{/* Weird formatting here is needed so no spaces are shown between multiple images. */}
 <a
 	{...props}
 	href={`https://astro-webrings.lou.gg/next?site=${site}&ring=${ring}`}
