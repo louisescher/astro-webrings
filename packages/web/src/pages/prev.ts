@@ -2,6 +2,7 @@ import { getCollection } from "astro:content";
 import type { APIRoute } from "astro";
 import type { webringSchema } from "@/content.config";
 import type { z } from "astro:schema";
+import { PROTOCOL_REGEX } from "@/util/protocol-regex";
 
 export const prerender = false;
 
@@ -12,7 +13,7 @@ export const GET: APIRoute = async (ctx) => {
 		status: 400
 	});
 
-	currentSite = currentSite.replace(/^https?:\/\//, "");
+	currentSite = currentSite.replace(PROTOCOL_REGEX, "");
 	const webring = ctx.url.searchParams.get("ring");
 
 	const knownRings = await getCollection("webrings");
@@ -27,7 +28,9 @@ export const GET: APIRoute = async (ctx) => {
 	// biome-ignore lint/suspicious/noExplicitAny: Needed to work, TypeScript is mad otherwise
 	const ringCollection = await getCollection(activeRing.data.collection as any) as Array<{ data: z.infer<typeof webringSchema> }>;
 
-	const currentSiteIndex = ringCollection.findIndex((entry) => entry.data.id === currentSite);
+	const currentSiteIndex = ringCollection.findIndex((entry) => (
+		entry.data.id === currentSite || entry.data.url.replace(PROTOCOL_REGEX, "") === currentSite
+	));
 
 	if (currentSiteIndex < 0) {
 		return new Response("Unknown site. Please submit a PR to https://github.com/louisescher/astro-webrings to add it.", {
