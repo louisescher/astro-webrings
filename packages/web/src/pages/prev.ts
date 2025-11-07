@@ -12,7 +12,7 @@ export const GET: APIRoute = async (ctx) => {
 		status: 400
 	});
 
-	currentSite = currentSite.replace(/https?:\/\//g, "");
+	currentSite = currentSite.replace(/^https?:\/\//, "");
 	const webring = ctx.url.searchParams.get("ring");
 
 	const knownRings = await getCollection("webrings");
