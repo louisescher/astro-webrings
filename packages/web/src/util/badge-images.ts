@@ -13,11 +13,11 @@ type BadgeImageData = {
 const badgeImages: Record<keyof typeof badges, BadgeImageData> = {
 	'friends-of-houston': {
 		static: friendsOfHoustonStatic,
-		animated: friendsOfHoustonAnimated
+		animated: friendsOfHoustonAnimated,
 	},
 	'built-with-astro': {
-		static: builtWithAstroStatic
-	}
+		static: builtWithAstroStatic,
+	},
 };
 
 export { badgeImages };

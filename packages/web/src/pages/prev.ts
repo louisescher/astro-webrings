@@ -45,12 +45,13 @@ export const GET: APIRoute = async (ctx) => {
 		);
 	}
 
-	const nextSite = ringCollection[(currentSiteIndex + 1) % ringCollection.length];
+	const prevSiteIdx = currentSiteIndex - 1 < 0 ? ringCollection.length - 1 : currentSiteIndex - 1;
+	const previousSite = ringCollection[prevSiteIdx];
 
 	return new Response(null, {
 		status: 302,
 		headers: new Headers({
-			Location: nextSite.data.url,
+			Location: previousSite.data.url,
 		}),
 	});
 };

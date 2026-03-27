@@ -6,14 +6,14 @@ import '@/styles/prose.css';
 import { Code } from 'astro:components';
 import { Font } from 'astro:assets';
 
-import { badges } from 'astro-webrings/badges';
+import { badges, type BadgeName } from 'astro-webrings/badges';
 import { badgeImages } from '@/util/badge-images';
 import { Image } from 'astro:assets';
 import OpenGraphImage from '@/assets/og.png';
 
 const webringEntryExample = `{
   "name": "Example Site",
-  "slug": "a-unique-slug",
+  "id": "a-unique-id",
   "url": "https://example.com"
 }`;
 
@@ -26,18 +26,18 @@ pnpm add astro-webrings
 # yarn
 yarn add astro-webrings`;
 
-const componentCode = `${"---"}
+const componentCode = `${'---'}
 import WebringBadge from "astro-webrings/badge";
-${"---"}
+${'---'}
 <WebringBadge site="example.com" ring="friends-of-houston" />
 `;
 
 const componentCodeAnimated = `<WebringBadge site="example.com" ring="friends-of-houston" animated />`;
 
-const componentCodeImageOverride = `${"---"}
+const componentCodeImageOverride = `${'---'}
 import WebringBadge from "astro-webrings/badge";
 import MyCustomBadge from "./my-custom-badge.png";
-${"---"}
+${'---'}
 <WebringBadge site="example.com" ring="friends-of-houston" imageOverride={MyCustomBadge} />
 <WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"/path/inside/public/to/my-custom-badge.png"} />
 <WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"https://example.com/my-custom-badge.png"} />`;
@@ -84,27 +84,51 @@ ${"---"}
 			<p>
 				Inside of this file, place the following information:
 			</p>
-			<Code code={webringEntryExample} lang="json" />
+			<Code code={webringEntryExample} lang="json" wrap />
 			<p>
 				The <code>name</code> can be anything you want it to be. The <code>id</code> should be a unique identifier for your
 				site and should only contain lowercase letters from a-z, numbers, dots, hyphens and underscores. The <code>url</code>
 				should be the URL to your site! This is where people will get linked to.
 			</p>
 			<p>
-				Once your pull request is approved and merged, you can install the
-				<a href="https://www.npmjs.com/package/astro-webrings"><code>astro-webrings</code></a> package, which allows you to add a
-				badge for the ring to your site. Start by installing the package from the NPM:
+				Once your pull request is approved, you should install the
+				<a href="https://www.npmjs.com/package/astro-webrings"><code>astro-webrings</code></a> package, which allows you to add a badge
+				for the ring to your site. Start by installing the package from the NPM:
 			</p>
-			<Code code={installCode} lang="bash" />
+			<Code code={installCode} lang="bash" wrap />
 			<p>After installing, you can import and use the badge like this:</p>
-			<Code code={componentCode} lang="astro" />
-			<p>Remember to swap out the `site` and `ring` props to the `slug` you chose when submitting your PR, and the `ring` you want to link to.</p>
-			<p>Additionally, if there is an animated image for the ring you want to link to, you can use the `animated` prop:</p>
-			<Code code={componentCodeAnimated} lang="astro" />
-			<p>That's it! Welcome on the ring.</p>
+			<Code code={componentCode} lang="astro" wrap />
+			<p>Remember to swap out the <code>site</code> and <code>id</code> props to the <code>slug</code> you chose when submitting your PR, and the <code>ring</code> you want to link to.</p>
+			<p>Additionally, if there is an animated image for the ring you want to link to, you can use the <code>animated</code> prop:</p>
+			<Code code={componentCodeAnimated} lang="astro" wrap />
+			<p>Once the badge or an equivalent link has been added, your PR will be merged. Welcome on the ring!</p>
+			<h3>Custom Badges</h3>
+			<p>In case you want to make a custom badge, or manually link to the next site on the ring, you can use the following links:</p>
+			<table>
+				<thead>
+					<tr>
+						<th>
+							Description
+						</th>
+						<th>
+							Link
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Next Site</td>
+						<td><code>https://astro-webrings.lou.gg/next?site=YOUR_SITE_ID&ring=RING_NAME</code></td>
+					</tr>
+					<tr>
+						<td>Previous Site</td>
+						<td><code>https://astro-webrings.lou.gg/prev?site=YOUR_SITE_ID&ring=RING_NAME</code></td>
+					</tr>
+				</tbody>
+			</table>
 			<h3>Overriding the Image</h3>
 			<p>If you want to use a different image, you can use the <code>imageOverride</code> prop on the component to pass in either the URL of an image (local or remote) or an imported <code>ImageMetadata</code> object:</p>
-			<Code code={componentCodeImageOverride} lang="astro" />
+			<Code code={componentCodeImageOverride} lang="astro" wrap />
 			<h2 id="available-webrings">Available Webrings</h2>
 			<p>Here's a list of all available Webrings you can join right now by making a PR:</p>
 			<table>
@@ -123,10 +147,10 @@ ${"---"}
 				</thead>
 				<tbody>
 					{Object.keys(badges).map(async (key) => {
-						const badge = badges[key];
+						const badge = badges[key as BadgeName];
 
-						const staticImage = badgeImages[key].static;
-						const animatedImage = badgeImages[key].animated;
+						const staticImage = badgeImages[key as BadgeName].static;
+						const animatedImage = badgeImages[key as BadgeName].animated;
 
 						return (
 							<tr>
