@@ -1,5 +1,11 @@
 # astro-webrings
 
+## 0.1.4
+
+### Patch Changes
+
+- [#35](https://github.com/louisescher/astro-webrings/pull/35) [`ca92b41`](https://github.com/louisescher/astro-webrings/commit/ca92b415d6ae54408c845ed2d76e31c153fed145) Thanks [@martrapp](https://github.com/martrapp)! - Fixes warnings when used with Astro V6
+
 ## 0.1.3
 
 ### Patch Changes
