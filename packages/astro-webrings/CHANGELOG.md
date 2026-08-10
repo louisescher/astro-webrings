@@ -1,5 +1,11 @@
 # astro-webrings
 
+## 0.1.5
+
+### Patch Changes
+
+- [#38](https://github.com/louisescher/astro-webrings/pull/38) [`79285f4`](https://github.com/louisescher/astro-webrings/commit/79285f472b59d70c808aa0f33511a5f6d534833e) Thanks [@louisescher](https://github.com/louisescher)! - Adds support for Astro 7
+
 ## 0.1.4
 
 ### Patch Changes
